@@ -10,9 +10,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DocumentLoader {
+public class ResourceReader {
 
-  public List<Document> load(Resource resource) {
+  public List<Document> read(Resource resource) {
 
     String filename = resource.getFilename();
 
