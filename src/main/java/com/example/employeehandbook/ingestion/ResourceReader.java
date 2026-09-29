@@ -28,7 +28,7 @@ public class ResourceReader {
   private DocumentReader createReader(Resource resource, String filename) {
 
     String lowername = filename.toLowerCase();
-    if (lowername.trim().endsWith("pdf")) {
+    if (lowername.endsWith("pdf")) {
 
       return new PagePdfDocumentReader(resource);
     }

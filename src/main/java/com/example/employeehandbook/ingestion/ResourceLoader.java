@@ -17,6 +17,7 @@ public class ResourceLoader {
 
   private final ApplicationContext applicationContext;
   private final ResourceReader resourceReader;
+  private final DocumentMetadataEnricher documentMetadataEnricher;
 
   public List<Document> loadAll() throws IOException {
 
@@ -25,7 +26,12 @@ public class ResourceLoader {
     List<Document> documents = new ArrayList<>();
 
     for (Resource resource : resources) {
-      documents.addAll(resourceReader.read(resource));
+      // documents.addAll(resourceReader.read(resource));
+
+      List<Document> resourceDocs = resourceReader.read(resource);
+      documentMetadataEnricher.enrich(resourceDocs, resource);
+      documents.addAll(resourceDocs);
+
     }
 
     return documents;
