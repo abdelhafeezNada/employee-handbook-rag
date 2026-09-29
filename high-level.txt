@@ -1,0 +1,68 @@
+                    Mini Employee Handbook RAG
+
+                        INGESTION
+                        ─────────
+
+employee-handbook.pdf
+employee-policy.docx
+leave-policy.md
+│
+▼
+DocumentReader
+│
+▼
+List<Document>
+│
+▼
+metadata enrichment
+│
+▼
+TokenTextSplitter
+│
+▼
+List<Document chunks>
+│
+▼
+SimpleVectorStore.add(...)
+│
+├────► OllamaEmbeddingModel
+│ │
+│ ▼
+│ embeddings
+│
+▼
+SimpleVectorStore
+│
+▼
+vector-store.json
+
+                       RETRIEVAL
+                       ─────────
+
+POST /api/employee-handbook/ask
+│
+▼
+EmployeeHandbookController
+│
+▼
+ChatClient
+│
+▼
+QuestionAnswerAdvisor
+│
+▼
+SimpleVectorStore.similaritySearch(...)
+│
+├────► OllamaEmbeddingModel
+│
+▼
+top matching chunks
+│
+▼
+QuestionAnswerAdvisor augments prompt
+│
+▼
+Ollama Chat Model
+│
+▼
+answer
